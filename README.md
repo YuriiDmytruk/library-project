@@ -2,6 +2,49 @@
 
 A modern online library application built with Next.js frontend, NestJS backend, PostgreSQL database, and managed with Turborepo.
 
+## ⚡ Fast Start (Quick Setup)
+
+Want to get up and running in 5 minutes? Follow these quick commands:
+
+```bash
+# 1. Clone and install
+git clone <repository-url>
+cd library-project
+yarn install
+
+# 2. Start database with Docker
+docker-compose up -d
+
+# 3. Setup environment files
+# Create apps/api/.env with:
+echo "DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=postgres
+DB_PASSWORD=password
+DB_DATABASE=library_db
+PORT=3001
+NODE_ENV=development" > apps/api/.env
+
+# Create apps/web/.env.local with:
+echo "NEXT_PUBLIC_API_URL=http://localhost:3001/api" > apps/web/.env.local
+
+# 4. Setup database and seed data
+cd apps/api
+yarn migration:run
+yarn seed:run
+cd ../..
+
+# 5. Start everything with Turborepo
+yarn dev
+```
+
+🎉 **That's it!** Your application should now be running at:
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:3001
+- **Database**: PostgreSQL on localhost:5432
+
+---
+
 ## 🏗️ Architecture
 
 - **Frontend**: Next.js 15 with Material-UI, Redux Toolkit, TypeScript
@@ -121,6 +164,7 @@ yarn dev:web
 # From root directory
 yarn dev
 ```
+
 ## 🔧 Available Scripts
 
 ### Root Level (Turborepo)
